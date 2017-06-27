@@ -13,7 +13,16 @@ app.get('/', function (req, res) {
 })
 
 app.get('/:user', function (req,res) {
-  console.log(req.params.user);
+  let user = req.params.user
+  let id = 0
+  for (var i = 0; i < data.users.length; i++){
+    if(user === data.users[i].name){
+      id = (data.users[i].id - 1)
+
+    }
+  }
+  console.log(data.users[id])
+  res.render('users', {users:data.users[id]})
 })
 
 app.listen(3000, function(){
